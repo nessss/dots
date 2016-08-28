@@ -1,3 +1,6 @@
+" Pathogen
+execute pathogen#infect()
+
 " basic settings
 set nocompatible
 set hidden
@@ -63,8 +66,6 @@ nnoremap ya\| F\|y,
 nnoremap vi\| T\|v,
 nnoremap va\| F\|v,
 
-" Pathogen
-execute pathogen#infect()
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
