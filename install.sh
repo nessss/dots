@@ -1,8 +1,8 @@
 #!/bin/bash
 
 if [ ! $TARGET ]; then
-    # TARGET=$HOME
-    TARGET=$HOME/dotfiletest
+    TARGET=$HOME
+    # TARGET=$HOME/dotfiletest
 fi
 
 echo "======= Homebrew ================================="
@@ -43,7 +43,7 @@ if [ -e $TARGET/.vimrc ] && [ ! -h $TARGET/.vimrc ]; then
     echo "*"
 fi
 
-if [ -e $TARGET/.bashrc ] && [ ! -h $TARGET/.bashrc]; then
+if [ -e $TARGET/.bashrc ] && [ ! -h $TARGET/.bashrc ]; then
     echo "*  $TARGET/.bashrc found; moving to $TARGET/.dotfiles/old_bashrc"
     mv $TARGET/.bashrc $TARGET/.dotfiles/old_bashrc
     echo "*"
@@ -66,7 +66,7 @@ echo "*"
 
 if [ ! -e $TARGET/.vimrc ]; then
     echo "*  creating symlink to vimrc at $TARGET/.vimrc"
-    ln -sv $(realpath ./vimrc) $TARGET/.vimrc
+    ln -sv $(realpath ./vim/vimrc) $TARGET/.vimrc
 fi
 echo "*"
 echo "*"
@@ -84,24 +84,21 @@ else
     echo "*  $TARGET/.vim/bundle found"
 fi
 echo "*"
-echo "*"
 
-for dir in ./vim/*/
+for dir in ./vim/bundle/*/
 do
-    if [[ `greadlink -f $TARGET/.vim/bundle/$dir` != `realpath $dir` ]]; then
-        echo "*  creating symlink to $dir at $TARGET/.vim/bundle/$dir"
-        ln -s $(realpath $dir) $TARGET/.vim/bundle/
+    if [[ "greadlink -f $TARGET/.vim/bundle/$(basename $dir)" != `realpath $dir` ]]; then
+        echo "*  creating symlink to $dir at $TARGET/.vim/bundle/$(basename $dir)"
+        ln -s $(realpath $dir) $TARGET/.vim/bundle/$(basename $dir)
     fi
 done
 
 echo "*  vim bundle plugins installed"
 
 echo "*"
-echo "*"
 echo "=================================================="
 echo
 echo "======= bash ====================================="
-echo "*"
 echo "*"
 
 # set up bash
@@ -112,8 +109,9 @@ if [ ! -e $TARGET/.bashrc ]; then
 fi
 
 echo "*"
-echo "*"
 echo "=================================================="
 echo
 echo
 echo "dotfiles installed and up to date"
+
+source $TARGET/.bashrc
