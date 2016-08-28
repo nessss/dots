@@ -1,0 +1,82 @@
+#-------------------------------------------------------------
+# Greeting, motd etc. ...
+#-------------------------------------------------------------
+
+# Color definitions (taken from Color Bash Prompt HowTo).
+# Some colors might look different of some terminals.
+# For example, I see 'Bold Red' as 'orange' on my screen,
+# hence the 'Green' 'BRed' 'Red' sequence I often use in my prompt.
+
+# Normal Colors
+Black=`tput setaf 0`        # Black
+Red=`tput setaf 1`          # Red
+Green=`tput setaf 2`        # Green
+Yellow=`tput setaf 3`       # Yellow
+Blue=`tput setaf 4`         # Blue
+Purple=`tput setaf 5`       # Purple
+Cyan=`tput setaf 6`         # Cyan
+White=`tput setaf 7`        # White
+
+# Bold
+BBlack=`tput setaf 8`       # Black
+BRed=`tput setaf 9`         # Red
+BGreen=`tput setaf 10`      # Green
+BYellow=`tput setaf 11`     # Yellow
+BBlue=`tput setaf 12`       # Blue
+BPurple=`tput setaf 13`     # Purple
+BCyan=`tput setaf 14`       # Cyan
+BWhite=`tput setaf 15`      # White
+
+# Background
+On_Black=`tput setab 0`     # Black
+On_Red=`tput setab 0`       # Red
+On_Green=`tput setab 0`     # Green
+On_Yellow=`tput setab 0`    # Yellow
+On_Blue=`tput setab 0`      # Blue
+On_Purple=`tput setab 0`    # Purple
+On_Cyan=`tput setab 0`      # Cyan
+On_White=`tput setab 0`     # White
+
+NC=`tput sgr0`              # Color Reset
+
+
+ALERT=${BWhite}${On_Red} # Bold White on red background
+
+#-------------------------------------------------------------
+# Shell Prompt - for many examples, see:
+#       http://www.debian-administration.org/articles/205
+#       http://www.askapache.com/linux/bash-power-prompt.html
+#       http://tldp.org/HOWTO/Bash-Prompt-HOWTO
+#       https://github.com/nojhan/liquidprompt
+#-------------------------------------------------------------
+# Current Format: [TIME USER@HOST PWD] >
+# TIME:
+#    Green     == machine load is low
+#    Orange    == machine load is medium
+#    Red       == machine load is high
+#    ALERT     == machine load is very high
+# USER:
+#    Cyan      == normal user
+#    Orange    == SU to user
+#    Red       == root
+# HOST:
+#    Cyan      == local session
+#    Green     == secured remote connection (via ssh)
+#    Red       == unsecured remote connection
+# PWD:
+#    Green     == more than 10% free disk space
+#    Orange    == less than 10% free disk space
+#    ALERT     == less than 5% free disk space
+#    Red       == current user does not have write privileges
+#    Cyan      == current filesystem is size zero (like /proc)
+# >:
+#    White     == no background or suspended jobs in this shell
+#    Cyan      == at least one background job in this shell
+#    Orange    == at least one suspended job in this shell
+#
+#    Command is added to the history file each time you hit enter,
+#    so it's available to all shells (using 'history -a').
+
+echo -e "${BCyan}This is BASH ${BRed}${BASH_VERSION%.*}${BCyan}\
+- DISPLAY on ${BRed}$DISPLAY${NC}\n"
+date
