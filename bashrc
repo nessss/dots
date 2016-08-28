@@ -22,12 +22,13 @@ fi
 alias debug='set -o nounset; set -o xtrace'
 alias mv='mv -iv'
 alias cp='cp -iv'
+alias mkdir='mkdir -p'
+
+alias readlink='greadlink'
 
 alias path='echo -e ${PATH//:/\\n}'
 
 alias du='du -kh'
-
-alias mkdir='mkdir -p'
 
 set -o notify
 set -o noclobber
@@ -55,7 +56,7 @@ exitstatus(){
     fi
 }
 
-PS1='$(exitstatus)  '
+PS1='\W $(exitstatus)  '
 
 PATH=/usr/bin:/bin:/usr/local/bin:/usr/games/bin:usr/local/lib:usr/lib:$PATH
 
