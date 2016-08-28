@@ -35,10 +35,10 @@ set -o noclobber
 set -o ignoreeof
 set -o vi
 
-if [ -d ~/.bash ]; then
-    source ~/.bash/ls
-    source ~/.bash/less
-    source ~/.bash/git-completion
+if [ -d ~/.dotfiles/bash ]; then
+    source ~/.dotfiles/bash/ls
+    source ~/.dotfiles/bash/less
+    source ~/.dotfiles/bash/git-completion
 fi
 
 shopt -s cdspell
