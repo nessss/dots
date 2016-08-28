@@ -34,6 +34,7 @@ set autoindent
 
 set backup
 set backupdir=~/backup/
+set dir=~/backup/
 set scrolloff=8
 
 " Don't use Ex mode, use Q for formatting
