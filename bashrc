@@ -3,8 +3,6 @@ if [ -z "$PS1" ]; then
    	return
 fi
 
-# Make bash check its window size after a process completes
-shopt -s checkwinsize
 # Tell the terminal about the working directory at each prompt.
 if [ "$TERM_PROGRAM" == "Apple_Terminal" ] && [ -z "$INSIDE_EMACS" ]; then
     update_terminal_cwd() {
@@ -41,10 +39,22 @@ if [ -d ~/.dotfiles/bash ]; then
     source ~/.dotfiles/bash/git-completion
 fi
 
+# Make bash check its window size after a process completes
+shopt -s checkwinsize
+
+# correct spelling errors for `cd` commands
 shopt -s cdspell
+
+# go to directory of non-directory file argument of `cd`
 shopt -s cdable_vars
+
+# don't search for commands in path on empty line
 shopt -s no_empty_cmd_completion
+
+# allow re-editing of multiline commands
 shopt -s cmdhist
+
+# 
 shopt -s histappend histreedit histverify
 shopt -s extglob
 
